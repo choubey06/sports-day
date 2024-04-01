@@ -27,8 +27,8 @@ export const getSelectedEvents = () => {
 
 export const getNonSelectedEvents = (events: IEventData[]) => {
     const selectedEvents = getSelectedEvents();
-    const nonSelectedEvents = events.filter((event) =>
-        selectedEvents.findIndex((cEvent) => cEvent.id === event.id)
+    const nonSelectedEvents = events.filter(
+        (event) => selectedEvents.findIndex((cEvent) => cEvent.id === event.id) < 0
     );
     return nonSelectedEvents;
 };

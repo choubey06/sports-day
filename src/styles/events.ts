@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div({
+    minHeight: "95vh",
     display: "flex",
     justifyContent: "space-between",
     padding: "12px",
 });
 
 interface IEventsContainere {
-    noLeftBorder?: boolean;
+    noleftborder?: string;
 }
 
 export const EventsContainer = styled.div<IEventsContainere>(
@@ -16,9 +17,9 @@ export const EventsContainer = styled.div<IEventsContainere>(
         border: "2px solid black",
         padding: "4px",
     }),
-    ({ noLeftBorder }) =>
-        noLeftBorder && {
-            borderLEft: "none",
+    ({ noleftborder }) =>
+        noleftborder && {
+            borderLeft: "none",
         }
 );
 
@@ -28,6 +29,7 @@ export const Title = styled.div({
     fontSize: "24px",
     fontWeight: "bold",
     padding: "12px",
+    marginBottom: "24px",
 });
 
 export const EventsGroupContainer = styled.div({
@@ -38,8 +40,9 @@ export const EventsGroupContainer = styled.div({
 });
 
 export const EventsGroupTitle = styled.div({
-    fontSize: "24px",
+    fontSize: "16px",
     fontWeight: "bold",
+    margin: "6px 8px",
 });
 
 export const EventCardsContainer = styled.div({
@@ -48,7 +51,7 @@ export const EventCardsContainer = styled.div({
 });
 
 interface IEventCardContainer {
-    useGrayscale?: boolean;
+    usegrayscale?: boolean;
 }
 
 export const EventCardContainer = styled.div<IEventCardContainer>(
@@ -59,10 +62,10 @@ export const EventCardContainer = styled.div<IEventCardContainer>(
         width: "250px",
         height: "140px",
         borderRadius: "12px",
-        margin: "8px",
+        margin: "6px",
     }),
-    ({ useGrayscale }) =>
-        useGrayscale && {
+    ({ usegrayscale }) =>
+        usegrayscale && {
             filter: "grayscale(100%)",
         }
 );
@@ -70,20 +73,22 @@ export const EventCardContainer = styled.div<IEventCardContainer>(
 export const CardIcon = styled.div({
     fontSize: "50px",
     fontWeight: "bold",
+    marginLeft: "12px",
 });
 export const CardDetails = styled.div({
-    borderLeft: "thick solid black",
-    fontSize: "20px",
-    marginLeft: "12px",
+    width: "100%",
+    borderLeft: "2px solid black",
+    margin: "0 12px",
     paddingLeft: "8px",
 });
 export const CardTitle = styled.div({
-    fontSize: "24px",
+    fontSize: "20px",
     fontWeight: "bold",
 });
 
 export const CardItem = styled.div({
-    fontSize: "24px",
+    fontSize: "16px",
+    height: "20px",
 });
 
 interface ICardActionButton {
@@ -94,11 +99,12 @@ interface ICardActionButton {
 export const CardActionButton = styled.button<ICardActionButton>(
     () => ({
         height: "30px",
-        width: "90%",
+        width: "100%",
         cursor: "pointer",
         borderRadius: "4px",
         backgroundColor: "#46891a",
         color: "white",
+        marginTop: "4px",
     }),
     ({ isSelected }) =>
         isSelected && {

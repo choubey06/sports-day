@@ -20,7 +20,7 @@ const EventCard = ({ eventData, handleSelect }: IEventCard) => {
     const duration = `${formatTime(eventData?.start_time)} - ${formatTime(eventData?.end_time)}`;
 
     return (
-        <EventCardContainer useGrayscale={eventData?.overlapping}>
+        <EventCardContainer usegrayscale={eventData?.overlapping}>
             <CardIcon>{getIcon()}</CardIcon>
             <CardDetails>
                 <CardTitle>{eventData?.event_name}</CardTitle>
