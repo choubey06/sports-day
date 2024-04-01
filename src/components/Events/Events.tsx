@@ -6,6 +6,7 @@ import { getEvents } from "../../helpers/getEvents";
 import {
     formatEventData,
     getSelectedEvents,
+    getNonSelectedEvents,
     selectEvent,
     removeEvent,
 } from "../../helpers/handleEvents";
@@ -31,7 +32,8 @@ const Events = () => {
     }, []);
 
     useEffect(() => {
-        setFormattedEvents(formatEventData(events));
+        const nonSelectedEvents = getNonSelectedEvents(events);
+        setFormattedEvents(formatEventData(nonSelectedEvents));
     }, [events, selectedEvents]);
 
     console.log(showToast);

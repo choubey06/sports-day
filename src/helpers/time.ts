@@ -27,8 +27,8 @@ export const isOverlapping = (
         const end = selectedEventsIntervals[index][1];
         if (
             (interval[0] >= start && interval[1] <= end) ||
-            (interval[0] >= start && interval[0] <= end) ||
-            (interval[1] >= start && interval[1] <= end)
+            (interval[0] > start && interval[0] < end) ||
+            (interval[1] > start && interval[1] < end)
         ) {
             result = true;
             break;

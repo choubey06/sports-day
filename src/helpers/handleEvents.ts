@@ -25,6 +25,14 @@ export const getSelectedEvents = () => {
     return getItem(SELECTED_EVENTS, []) as IEventData[];
 };
 
+export const getNonSelectedEvents = (events: IEventData[]) => {
+    const selectedEvents = getSelectedEvents();
+    const nonSelectedEvents = events.filter((event) =>
+        selectedEvents.findIndex((cEvent) => cEvent.id === event.id)
+    );
+    return nonSelectedEvents;
+};
+
 export const selectEvent = (event: IEventData) => {
     const selectedEvents = getSelectedEvents();
     const updatedEvents = [...selectedEvents, event];
