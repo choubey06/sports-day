@@ -5,7 +5,7 @@ import { IEventsGroup } from "./types";
 
 const EventsGroup = ({ title, eventList = [], handleEventSelection }: IEventsGroup) => {
     return (
-        <EventsGroupContainer>
+        <EventsGroupContainer data-testid="events-group">
             <EventsGroupTitle data-testid="events-group-title">{title}</EventsGroupTitle>
             <EventCardsContainer>
                 {eventList.map((event) => (

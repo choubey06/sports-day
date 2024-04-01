@@ -20,7 +20,10 @@ const EventCard = ({ eventData, handleSelect }: IEventCard) => {
     const duration = `${formatTime(eventData?.start_time)} - ${formatTime(eventData?.end_time)}`;
 
     return (
-        <EventCardContainer usegrayscale={eventData?.overlapping}>
+        <EventCardContainer
+            usegrayscale={eventData?.overlapping}
+            data-testid={eventData?.selected ? "event-card-selected" : "event-card"}
+        >
             <CardIcon data-testid="event-icon">{getIcon()}</CardIcon>
             <CardDetails>
                 <CardTitle data-testid="event-name">{eventData?.event_name}</CardTitle>
@@ -30,7 +33,7 @@ const EventCard = ({ eventData, handleSelect }: IEventCard) => {
                     onClick={onSelect}
                     isSelected={eventData?.selected}
                     disabled={eventData?.overlapping}
-                    data-testid="event-action"
+                    data-testid={`event-action-${eventData?.id}`}
                 >
                     {eventData?.selected ? "Remove" : "Select"}
                 </CardActionButton>
