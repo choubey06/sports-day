@@ -18,6 +18,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "downlevelIteration": true,
+    "types": ["cypress", "node"],
     "paths": {
       "components/*": [
         "src/components/*"
@@ -26,6 +27,9 @@
   },
   "include": [
     "./src",
-    "./webpack.config.ts"
+    "./cypress",
+    "./cypress.config.ts",
+    "./jest.config.ts",
+    "./webpack.config.ts", "cypress",
   ]
 }

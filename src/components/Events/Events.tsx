@@ -25,12 +25,16 @@ const Events = () => {
     useEffect(() => {
         const setEventsData = async () => {
             setIsLoading(true);
-            const eventsData = await getEvents();
-            setEvents(eventsData);
-            setFormattedEvents(formatEventData(eventsData));
-            const selectedEventsFromStorage = getSelectedEvents();
-            if (selectedEventsFromStorage)
-                setSelectedEvents(formatEventData(selectedEventsFromStorage, true));
+            try {
+                const eventsData = await getEvents();
+                setEvents(eventsData);
+                setFormattedEvents(formatEventData(eventsData));
+                const selectedEventsFromStorage = getSelectedEvents();
+                if (selectedEventsFromStorage)
+                    setSelectedEvents(formatEventData(selectedEventsFromStorage, true));
+            } catch {
+                // TODO : Implement error component
+            }
             setIsLoading(false);
         };
         setEventsData();
@@ -47,9 +51,13 @@ const Events = () => {
 
     const handleSearch = useCallback(async (searchText: string) => {
         setIsLoading(true);
-        const updatedEvents = await getEvents(searchText);
-        const nonSelectedEvents = getNonSelectedEvents(updatedEvents);
-        setFormattedEvents(formatEventData(nonSelectedEvents || []));
+        try {
+            const updatedEvents = await getEvents(searchText);
+            const nonSelectedEvents = getNonSelectedEvents(updatedEvents);
+            setFormattedEvents(formatEventData(nonSelectedEvents || []));
+        } catch {
+            // TODO : Implement error component
+        }
         setIsLoading(false);
     }, []);
 
@@ -76,7 +84,7 @@ const Events = () => {
     return (
         <Container>
             <EventsContainer>
-                <Title>
+                <Title data-testid="events-title">
                     All Events
                     <SearchBox onSearch={handleSearch} label="Search by event names..." />
                 </Title>
@@ -91,7 +99,7 @@ const Events = () => {
                 {isLoading && <ThreeDots color="black" />}
             </EventsContainer>
             <EventsContainer noleftborder="true">
-                <Title>Selected Events</Title>
+                <Title data-testid="select-events-title">Selected Events</Title>
                 {Object.keys(selectedEvents).map((category) => (
                     <EventsGroup
                         key={`${category}-selected`}

@@ -21,15 +21,16 @@ const EventCard = ({ eventData, handleSelect }: IEventCard) => {
 
     return (
         <EventCardContainer usegrayscale={eventData?.overlapping}>
-            <CardIcon>{getIcon()}</CardIcon>
+            <CardIcon data-testid="event-icon">{getIcon()}</CardIcon>
             <CardDetails>
-                <CardTitle>{eventData?.event_name}</CardTitle>
-                <CardItem>{`(${eventData?.event_category})`}</CardItem>
-                <CardItem>{duration}</CardItem>
+                <CardTitle data-testid="event-name">{eventData?.event_name}</CardTitle>
+                <CardItem data-testid="event-category">{`(${eventData?.event_category})`}</CardItem>
+                <CardItem data-testid="event-duration">{duration}</CardItem>
                 <CardActionButton
                     onClick={onSelect}
                     isSelected={eventData?.selected}
                     disabled={eventData?.overlapping}
+                    data-testid="event-action"
                 >
                     {eventData?.selected ? "Remove" : "Select"}
                 </CardActionButton>
