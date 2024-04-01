@@ -46,8 +46,11 @@ const Events = () => {
     console.log(showToast);
 
     const handleSearch = useCallback(async (searchText: string) => {
+        setIsLoading(true);
         const updatedEvents = await getEvents(searchText);
-        setFormattedEvents(formatEventData(updatedEvents || []));
+        const nonSelectedEvents = getNonSelectedEvents(updatedEvents);
+        setFormattedEvents(formatEventData(nonSelectedEvents || []));
+        setIsLoading(false);
     }, []);
 
     const openToast = useCallback(() => {
